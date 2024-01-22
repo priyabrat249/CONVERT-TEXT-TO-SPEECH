@@ -2,7 +2,9 @@ const textarea =document.querySelector('#text');
 let voicelist =document.querySelector('#voice');
 let speechbtn =document.querySelector('.Submit');
 
-let synth =speechSynthesis;
+let synth = speechSynthesis;
+// speechSynthesis is a built-in object in the browser's Web Speech API. 
+// It provides functionality for speech synthesis, allowing you to generate and control speech output in your web applications.
 let isSpeaking=true;
 
 function voicespeech(){
@@ -10,19 +12,20 @@ function voicespeech(){
         let option =document.createElement('option');
         option.text=voice.name;
         voicelist.add(option);
-        console.log(option);
+        // console.log(option);
     }
 }
 synth.addEventListener('voiceschanged',voicespeech);
 
 function texttospeech(text){
-    let utternance=new SpeechSynthesisUtterance(text);
+    let utternance = new SpeechSynthesisUtterance(text);
     for(let voice of synth.getVoices()){
         if(voice.name == voicelist.value){
             utternance.voice=voice;
         }
     }
-    console.log(utternance);
+        console.log(utternance);
+
     utternance.volume = 1;
     speechSynthesis.speak(utternance);
 }
